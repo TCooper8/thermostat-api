@@ -114,6 +114,7 @@ func (handler *Handler) PatchThermostat(resp http.ResponseWriter, req *http.Requ
   }
 
   decoder := json.NewDecoder(req.Body)
+  defer req.Body.Close()
   if req.Body == nil {
     http.Error(resp, "Expected body to be non-null.", http.StatusBadRequest)
   }
@@ -124,14 +125,12 @@ func (handler *Handler) PatchThermostat(resp http.ResponseWriter, req *http.Requ
     http.Error(resp, err.Error(), http.StatusBadRequest)
   }
 
-  patched, err := handler.db.Patch(id, patch)
-  if err != nil {
+  badRequest, err := handler.db.Patch(id, patch)
+  if badRequest != nil {
+    http.Error(resp, badRequest.Error(), http.StatusBadRequest)
+  } else if err != nil {
     http.Error(resp, err.Error(), http.StatusBadRequest)
-  }
-  if patched == false {
-    http.Error(resp, "Thermostat not found.", http.StatusNotFound)
   } else {
     http.Error(resp, "", http.StatusNoContent)
   }
-  defer req.Body.Close()
 }
