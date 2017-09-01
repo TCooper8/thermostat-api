@@ -2,6 +2,10 @@
 
 ## REST API
 
+## Authorization
+
+Currently, there is none.
+
 ### GET /hub/thermostats?offset=<offset>&limit=<limit>
 
 Will list a range of thermostats within offset and limit.
