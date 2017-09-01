@@ -30,12 +30,12 @@ var validFanModes = map[string] bool {
 func validateThermostat(v model.Thermostat) error {
   _, ok := validOperatingModes[v.OperatingMode]
   if !ok {
-    return errors.New(fmt.Sprintf("'%v' is not a valid operating mode."))
+    return errors.New(fmt.Sprintf("'%v' is not a valid operating mode.", v.OperatingMode))
   }
 
   _, ok = validFanModes[v.FanMode]
   if !ok {
-    return errors.New(fmt.Sprintf("'%s' is not a valid fan mode."))
+    return errors.New(fmt.Sprintf("'%s' is not a valid fan mode.", v.FanMode))
   }
 
   return nil
