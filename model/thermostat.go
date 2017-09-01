@@ -4,6 +4,8 @@ import (
   "github.com/satori/go.uuid"
 )
 
+// Operating mode should be one of "cool" | "heat" | "off"
+// FanMode should be one of "auto" | "on"
 type Thermostat struct {
   Id uuid.UUID `json:"id"`
   Name string `json:"name"`
