@@ -79,9 +79,9 @@ func (db *Db) Find(id uuid.UUID) *model.Thermostat {
   return nil
 }
 
-// This function will return true or false if the valud is found.
-// The error result signifies a client error -- This needs to be updated to reflect possible database errors.
-func (db *Db) Patch(id uuid.UUID, patch model.ThermostatPatch) (bool, error) {
+// The first error will signify any bad request.
+// The second error will signify any server error.
+func (db *Db) Patch(id uuid.UUID, patch model.ThermostatPatch) (error, error) {
   thermo := model.Thermostat {
     uuid.Nil,
     patch.Name,
@@ -95,7 +95,7 @@ func (db *Db) Patch(id uuid.UUID, patch model.ThermostatPatch) (bool, error) {
   // This will check for invalid user input.
   err := validateThermostat(thermo)
   if err != nil {
-    return false, err
+    return err, nil
   }
 
   for i, v := range db.Thermostats {
@@ -104,9 +104,9 @@ func (db *Db) Patch(id uuid.UUID, patch model.ThermostatPatch) (bool, error) {
       thermo.Id = v.Id
       thermo.CurrentTemp = v.CurrentTemp
       db.Thermostats[i] = thermo
-      return true, nil
+      return nil, nil
     }
   }
 
-  return false, nil
+  return errors.New("Thermostat not found"), nil
 }
