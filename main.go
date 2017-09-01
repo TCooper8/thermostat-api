@@ -1,11 +1,13 @@
 package main
 
 import (
+  "log"
 	"github.com/satori/go.uuid"
 	"github.com/tcooper8/thermostat-api/db"
 	"github.com/tcooper8/thermostat-api/model"
 	"github.com/tcooper8/thermostat-api/server"
 	"math/rand"
+  "os"
 )
 
 func main() {
@@ -66,5 +68,11 @@ func main() {
 	db.Thermostats = thermostats
 	app.Init(db)
 
-	app.Run(":8080")
+  host := os.Getenv("HOST")
+  if host == "" {
+    host = ":8080"
+  }
+
+  log.Printf("Started on %v", host)
+	app.Run(host)
 }
