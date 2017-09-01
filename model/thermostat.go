@@ -16,6 +16,7 @@ type Thermostat struct {
   FanMode string `json:"fanMode"`
 }
 
+// This structure is used as a safe-guard against invalid field inputs for the Thermostat struct -- read-only fields won't even be read by the deserializers.
 type ThermostatPatch struct {
   Name string `json:"name"`
   OperatingMode string `json:"operatingMode"`

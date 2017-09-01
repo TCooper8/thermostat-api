@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+  // This is all dummy data for the in-memory data store.
+  // This should be replaced with a real database implementation.
   var thermostats = []model.Thermostat {
     model.Thermostat {
       uuid.NewV4(),
@@ -62,7 +64,6 @@ func main() {
 
   db.Init()
   db.Thermostats = thermostats
-
   app.Init(db)
 
   app.Run(":8080")

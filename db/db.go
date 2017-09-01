@@ -12,17 +12,21 @@ type Db struct {
   Thermostats []model.Thermostat
 }
 
+// This may need to be replaced with a database operation in the future, for sanitizing user input for Thermostat.OperatingMode.
 var validOperatingModes = map[string] bool {
   "cool": true,
   "heat": true,
   "off": true,
 }
 
+// This may need to be replaced with a database operation in the future, for sanitizing user input for Thermostat.FanMode.
 var validFanModes = map[string] bool {
   "auto": true,
   "on": true,
 }
 
+// Used to validate user input for a Thermostat.
+// This may need to be updated with input validation for temperature values as well. Obviously we don't want someone to set CoolSetPoint to an extremely low value.
 func validateThermostat(v model.Thermostat) error {
   _, ok := validOperatingModes[v.OperatingMode]
   if !ok {
@@ -41,6 +45,7 @@ func (db *Db) Init() {
   db.Thermostats = make([]model.Thermostat, 0)
 }
 
+// Queries for a range of thermostats, by limit and offset.
 func (db *Db) FindAll(limit, offset int) []interface{} {
   log.Printf("Querying for thermostats with limit=%v&offset=%v", limit, offset)
 
@@ -52,6 +57,7 @@ func (db *Db) FindAll(limit, offset int) []interface{} {
   return items
 }
 
+// Finds a single Thermostat by id.
 func (db *Db) Find(id uuid.UUID) *model.Thermostat {
   log.Printf("Querying for thermostat %v", id)
 
