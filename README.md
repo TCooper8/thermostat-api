@@ -2,6 +2,17 @@
 
 ## REST API
 
+## SETUP
+
+```bash
+go build
+go test
+go run main.go
+```
+
++ env
+  - HOST : Example, ":8080"
+
 ## Authorization
 
 Currently, there is none.
