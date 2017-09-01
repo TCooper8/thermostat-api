@@ -6,7 +6,7 @@
 
 Currently, there is none.
 
-### GET /hub/thermostats?offset=<offset>&limit=<limit>
+### GET /hub/thermostats?offset=%offset%&limit=%limit%
 
 Will list a range of thermostats within offset and limit.
 
@@ -14,7 +14,7 @@ Will list a range of thermostats within offset and limit.
 
 Will attempt to retrive a specific value.
 
-### PATCH /hug/thermostats/<thermostat.id: uuid> with <body>
+### PATCH /hub/thermostats/<thermostat.id: uuid> with <body>
 
 ```json
 {
