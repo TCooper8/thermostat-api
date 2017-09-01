@@ -205,3 +205,21 @@ func TestPatchThermostat(test *testing.T) {
     checkResponseCode(test, http.StatusNoContent, resp.Code)
   }
 }
+
+func TestPatchThermostatBadFanMode(test *testing.T) {
+  patch := model.ThermostatPatch{
+    "test",
+    "cool",
+    0.0,
+    0.0,
+    "bad mode!",
+  }
+  patchBytes, _ := json.Marshal(patch)
+
+  for _, thermostat := range thermostats {
+    id := thermostat.Id
+    req, _ := http.NewRequest("PATCH", "/hub/thermostats/" + id.String(), bytes.NewBuffer(patchBytes))
+    resp := executeRequest(req)
+    checkResponseCode(test, http.StatusBadRequest, resp.Code)
+  }
+}
