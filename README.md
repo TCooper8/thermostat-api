@@ -22,7 +22,7 @@ Currently, there is none.
 
 ** Patch Thermostat **
 ----
-  Will attempt to update a given record by id, with the values of the input structure -- Does not currently protect against undefined or default values if fields are ommited.
+  Will attempt to update a given record by id, with the values of the input structure -- Does not currently protect against undefined or default values if fields are ommited. Non-write fields are ignored.
 
 * **URL**
 ``` PATCH /hub/thermostats/<thermostat.id: uuid> with <body> ```
