@@ -125,11 +125,11 @@ func (handler *Handler) PatchThermostat(resp http.ResponseWriter, req *http.Requ
     http.Error(resp, err.Error(), http.StatusBadRequest)
   }
 
-  badRequest, err := handler.db.Patch(id, patch)
+  updated, badRequest := handler.db.Patch(id, patch)
   if badRequest != nil {
     http.Error(resp, badRequest.Error(), http.StatusBadRequest)
-  } else if err != nil {
-    http.Error(resp, err.Error(), http.StatusBadRequest)
+  } else if !updated {
+    http.Error(resp, "Thermostat not found.", http.StatusNotFound)
   } else {
     http.Error(resp, "", http.StatusNoContent)
   }
