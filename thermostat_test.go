@@ -90,6 +90,8 @@ func TestMain(m *testing.M) {
 	os.Exit(code)
 }
 
+//// #### Testing /hub/thermostats?limit=%limit%&offset=%offset% ####
+
 func TestListThermostats(test *testing.T) {
 	req, _ := http.NewRequest("GET", "/hub/thermostats", nil)
 	response := executeRequest(req)
@@ -140,6 +142,8 @@ func TestListThermostatsLimit(test *testing.T) {
 	}
 }
 
+/// #### Testing GET /hub/thermostats/<id> ####
+
 func TestGetThermostatNotFound(test *testing.T) {
 	id := uuid.NewV4()
 	req, _ := http.NewRequest("GET", "/hub/thermostats/"+id.String(), nil)
@@ -161,6 +165,8 @@ func TestGetThermostat(test *testing.T) {
 		}
 	}
 }
+
+//// #### Testing PATCH /hub/thermostats ####
 
 func TestPatchThermostatNotFound(test *testing.T) {
 	id := uuid.NewV4()
