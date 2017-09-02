@@ -1,6 +1,7 @@
 package handler
 
 import (
+  "fmt"
   "github.com/satori/go.uuid"
   "encoding/json"
   "github.com/gorilla/mux"
@@ -88,6 +89,9 @@ func (handler *Handler) GetThermostats(resp http.ResponseWriter, req *http.Reque
     httpError(req, resp, err.Error(), http.StatusInternalServerError)
   } else {
     resp.Header().Set("x-total-count", strconv.Itoa(len(thermostats)))
+    if len(thermostats) == limit {
+      resp.Header().Set("link", fmt.Sprintf("/hub/thermostats?offset=%v&limit=%v", offset + limit, limit))
+    }
     writeJsonResponse(req, resp, bytes)
   }
 }
