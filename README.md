@@ -1,7 +1,5 @@
 # Just a dummy api for Golang!
 
-## REST API
-
 ## SETUP
 
 ```bash
@@ -16,6 +14,26 @@ go run main.go
 ## Authorization
 
 Currently, there is none.
+
+## REST API
+
+* **URL**
+  /hub/thermostats
+* **METHOD:**
+  `GET`
+* **URL Params**
+  **Optional:**
+  `offset={int}`
+  `limit={int}`
+
+* **Success Response**
+  * **Code:** 200 <br />
+    **Content:** `model.Thermostat`
+
+* **Error Response**
+
+* **Sample Call**
+  `GET /hub/thermostats?offset=0&limit=5`
 
 ** Get Thermostats **
 ----
