@@ -53,19 +53,26 @@ Currently, there is none.
 * **Error Response**
   * **Code:** 404 <br />
 
-** Patch Thermostat **
+
+**Patch Thermostat**
 ----
   Will attempt to update a given record by id, with the values of the input structure -- Does not currently protect against undefined or default values if fields are ommited. Non-write fields are ignored.
 
 * **URL**
-``` PATCH /hub/thermostats/<thermostat.id: uuid> with <body> ```
-
-```json
-{
-  "name": "bob1",
-  "operatingMode": "off" | "cool" | "heat",
-  "coolSetPoint": 75,
-  "heatSetPoint": 72,
-  "fanMode": "auto" | "on"
-}
-```
+  `/hub/thermostats/<thermostat.id: uuid>`
+* **METHOD:**
+  PATCH
+* **Data Params**
+  ```json
+  {
+    "name": "bob1",
+    "operatingMode": "off" | "cool" | "heat",
+    "coolSetPoint": 75,
+    "heatSetPoint": 72,
+    "fanMode": "auto" | "on"
+  }
+  ```
+* **Success Response**
+  * **Code:** 204 <br />
+* **Error Response**
+  * **Code:** 404 <br />
