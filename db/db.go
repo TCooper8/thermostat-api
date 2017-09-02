@@ -50,7 +50,7 @@ func (db *Db) FindAll(limit, offset int) []interface{} {
   log.Printf("Querying for thermostats with limit=%v&offset=%v", limit, offset)
 
   items := make([]interface{}, 0, limit)
-  for i := offset; i < limit && i < len(db.Thermostats); i++ {
+  for i := offset; i < (limit + offset) && i < len(db.Thermostats); i++ {
     items = append(items, db.Thermostats[i])
   }
 
