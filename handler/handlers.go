@@ -86,9 +86,10 @@ func (handler *Handler) GetThermostats(resp http.ResponseWriter, req *http.Reque
   bytes, err := json.Marshal(thermostats)
   if err != nil {
     httpError(req, resp, err.Error(), http.StatusInternalServerError)
+  } else {
+    resp.Header().Set("x-total-count", strconv.Itoa(len(thermostats)))
+    writeJsonResponse(req, resp, bytes)
   }
-
-  writeJsonResponse(req, resp, bytes)
 }
 
 func (handler *Handler) GetThermostat(resp http.ResponseWriter, req *http.Request) {
