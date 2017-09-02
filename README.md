@@ -17,6 +17,10 @@ Currently, there is none.
 
 ## REST API
 
+**List Thermostats**
+----
+  Lists a range of thermostats, specified with `limit` and `offset`.
+
 * **URL**
   /hub/thermostats
 * **METHOD:**
@@ -28,26 +32,26 @@ Currently, there is none.
 
 * **Success Response**
   * **Code:** 200 <br />
-    **Content:** `model.Thermostat`
+    **Content:** `[model.Thermostat]`
 
 * **Error Response**
 
 * **Sample Call**
   `GET /hub/thermostats?offset=0&limit=5`
 
-** Get Thermostats **
+**Get Thermostat**
 ----
-  Will list a range of thermostats within offset and limit.
+  Will attempt to retrive a specific thermostat.
 
 * **URL**
-``` GET /hub/thermostats?offset=<offset>&limit=<limit> ```
-
-** Get Thermostat **
-----
-  Will attempt to retrive a specific value.
-
-* **URL**
-``` GET /hub/thermostats/<thermostat.id: uuid> ```
+  `/hub/thermostats/<thermostat.id: uuid>```
+* **METHOD:**
+  GET
+* **Success Response**
+  * **Code:** 200 <br />
+    **Content:** `model.Thermostat`
+* **Error Response**
+  * **Code:** 404 <br />
 
 ** Patch Thermostat **
 ----
