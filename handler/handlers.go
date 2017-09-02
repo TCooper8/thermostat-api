@@ -15,7 +15,8 @@ type Handler struct {
   db *db.Db
 }
 
-func writeJsonResponse(resp http.ResponseWriter, bytes []byte) {
+func writeJsonResponse(req *http.Request, resp http.ResponseWriter, bytes []byte) {
+  log.Printf("Response %v with %v:%v", req.URL, 200)
   resp.Header().Set("Content-Type", "application/json; charset=UTF-8")
   resp.Write(bytes)
 }
@@ -87,7 +88,7 @@ func (handler *Handler) GetThermostats(resp http.ResponseWriter, req *http.Reque
     httpError(req, resp, err.Error(), http.StatusInternalServerError)
   }
 
-  writeJsonResponse(resp, bytes)
+  writeJsonResponse(req, resp, bytes)
 }
 
 func (handler *Handler) GetThermostat(resp http.ResponseWriter, req *http.Request) {
@@ -108,7 +109,7 @@ func (handler *Handler) GetThermostat(resp http.ResponseWriter, req *http.Reques
     httpError(req, resp, err.Error(), http.StatusInternalServerError)
   }
 
-  writeJsonResponse(resp, bytes)
+  writeJsonResponse(req, resp, bytes)
 }
 
 func (handler *Handler) PatchThermostat(resp http.ResponseWriter, req *http.Request) {
