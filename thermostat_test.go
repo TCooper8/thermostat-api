@@ -34,46 +34,46 @@ var thermostats = []model.Thermostat{
 	model.Thermostat{
 		uuid.NewV4(),
 		"bob1",
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
 		"off",
-		rand.Float64()*20 + 70,
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
+		rand.Float64()*30 + 70,
 		"auto",
 	},
 	model.Thermostat{
 		uuid.NewV4(),
 		"bob2",
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
 		"heat",
-		rand.Float64()*20 + 70,
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
+		rand.Float64()*30 + 70,
 		"auto",
 	},
 	model.Thermostat{
 		uuid.NewV4(),
 		"bob3",
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
 		"off",
-		rand.Float64()*20 + 70,
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
+		rand.Float64()*30 + 70,
 		"auto",
 	},
 	model.Thermostat{
 		uuid.NewV4(),
 		"bob4",
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
 		"cool",
-		rand.Float64()*20 + 70,
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
+		rand.Float64()*30 + 70,
 		"auto",
 	},
 	model.Thermostat{
 		uuid.NewV4(),
 		"bob5",
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
 		"off",
-		rand.Float64()*20 + 70,
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
+		rand.Float64()*30 + 70,
 		"auto",
 	},
 }
@@ -173,8 +173,8 @@ func TestPatchThermostatNotFound(test *testing.T) {
 	patch := model.ThermostatPatch{
 		"test",
 		"cool",
-		0.0,
-		0.0,
+		70.0,
+		70.0,
 		"auto",
 	}
 	patchBytes, _ := json.Marshal(patch)
@@ -198,8 +198,8 @@ func TestPatchThermostat(test *testing.T) {
 	patch := model.ThermostatPatch{
 		"test",
 		"cool",
-		0.0,
-		0.0,
+		70.0,
+		70.0,
 		"auto",
 	}
 	patchBytes, _ := json.Marshal(patch)
@@ -216,8 +216,8 @@ func TestPatchThermostatBadFanMode(test *testing.T) {
 	patch := model.ThermostatPatch{
 		"test",
 		"cool",
-		0.0,
-		0.0,
+		70.0,
+		70.0,
 		"bad mode!",
 	}
 	patchBytes, _ := json.Marshal(patch)
@@ -234,8 +234,8 @@ func TestPatchThermostatBadOperatingMode(test *testing.T) {
 	patch := model.ThermostatPatch{
 		"test",
 		"bad mode!",
-		0.0,
-		0.0,
+		70.0,
+		70.0,
 		"auto",
 	}
 	patchBytes, _ := json.Marshal(patch)

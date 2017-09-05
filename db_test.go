@@ -27,10 +27,10 @@ func TestFindAllN(test *testing.T) {
 		value := model.Thermostat{
 			uuid.NewV4(),
 			"bob1",
-			rand.Float64()*20 + 70,
+			rand.Float64()*30 + 70,
 			"off",
-			rand.Float64()*20 + 70,
-			rand.Float64()*20 + 70,
+			rand.Float64()*30 + 70,
+			rand.Float64()*30 + 70,
 			"auto",
 		}
 		db.Thermostats = append(db.Thermostats, value)
@@ -65,10 +65,10 @@ func TestFindSome(test *testing.T) {
 	expected := model.Thermostat{
 		uuid.NewV4(),
 		"bob1",
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
 		"off",
-		rand.Float64()*20 + 70,
-		rand.Float64()*20 + 70,
+		rand.Float64()*30 + 70,
+		rand.Float64()*30 + 70,
 		"auto",
 	}
 	db.Thermostats = append(db.Thermostats, expected)
