@@ -38,6 +38,14 @@ func validateThermostat(v model.Thermostat) error {
     return errors.New(fmt.Sprintf("'%s' is not a valid fan mode.", v.FanMode))
   }
 
+  if v.HeatSetPoint < 30.0 || v.HeatSetPoint > 100.0 {
+    return errors.New("'HeatSetPoint' is not within the range of [30.0, 100.0]")
+  }
+
+  if v.CoolSetPoint < 30.0 || v.CoolSetPoint > 100.0 {
+    return errors.New("'CoolSetPoint' is not within the range of [30.0, 100.0]")
+  }
+
   return nil
 }
 
